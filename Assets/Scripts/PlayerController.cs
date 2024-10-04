@@ -12,13 +12,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float characterSpeed = 4.5f; 
     [SerializeField]private float jumpForce = 5f; 
 
-    [SerializeField] private int healthPoints = 5;  
+    [SerializeField] private int healthPoints = 5; 
+
+    [SerializeField] private Transform attackHitBox; 
+    [SerializeField] private float attackRadius = 1; 
 
 
     void Awake()
     {
         characterRigidbody = GetComponent<Rigidbody2D>(); 
-        characterAnimator = GetComponent<Animator>();
+        characterAnimator = GetComponent<Animator>(); 
     }
 
     // Start is called before the first frame update
@@ -99,15 +102,32 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine("AttackAnimation");
         characterAnimator.SetTrigger("Attack"); 
+
     }
 
     IEnumerator AttackAnimation() 
     {
         isAttacking = true; 
 
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.1f); 
 
          isAttacking = false;
+
+         Collider2D[] collider = Physics2D.OverlapCircleAll(attackHitBox.position, attackRadius);
+        foreach(Collider2D enemy in collider)
+        {
+            if(enemy.gameObject.CompareTag("Mimico"))
+            {
+                //Destroy(enemy.gameObject); 
+                Rigidbody2D enemyRigidbody = enemy.GetComponent<Rigidbody2D>(); 
+                enemyRigidbody.AddForce(transform.right + transform.up * 2, ForceMode2D.Impulse); 
+                
+                Enemy enemyScript = enemy.GetComponent<Enemy>(); 
+                enemyScript.TakeDamage();
+
+
+            }
+        }
     }
 
 
@@ -140,5 +160,11 @@ public class PlayerController : MonoBehaviour
             //Destroy(gameObject, 0.45f); 
             TakeDamage(); 
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; 
+        Gizmos.DrawWireSphere(attackHitBox.position,attackRadius); 
     }
 }
