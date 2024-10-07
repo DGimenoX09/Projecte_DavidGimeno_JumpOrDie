@@ -37,13 +37,21 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        horizontalInput = Input.GetAxis("Horizontal"); 
-
-        jumpInput = Input.GetButtonDown("Jump"); 
+        if(isAttacking && horizontalInput == 0)
+        {
+            horizontalInput = 0;
+        }
+        else
+        {
+            horizontalInput = Input.GetAxis("Horizontal"); 
+        }
 
         if(horizontalInput < 0)
         {
+            if(!isAttacking)
+            {
             transform.rotation = Quaternion.Euler(0, 180, 0); 
+            }
             characterAnimator.SetBool("IsRunning", true); 
         }
         else if(horizontalInput > 0)
@@ -83,19 +91,17 @@ public class PlayerController : MonoBehaviour
             Attack(); 
         }
 
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            GameManager.instance.Pause(); 
+        }
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isAttacking) 
-        {
-            characterRigidbody.velocity = new Vector2(0, characterRigidbody.velocity.y); 
-        }
-        else 
-        {
-            characterRigidbody.velocity = new Vector2(horizontalInput * characterSpeed, characterRigidbody.velocity.y);
-        }
+        characterRigidbody.velocity = new Vector2(horizontalInput * characterSpeed, characterRigidbody.velocity.y);
     }
 
     void Attack()
@@ -111,9 +117,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f); 
 
-         isAttacking = false;
-
-         Collider2D[] collider = Physics2D.OverlapCircleAll(attackHitBox.position, attackRadius);
+        Collider2D[] collider = Physics2D.OverlapCircleAll(attackHitBox.position, attackRadius);
         foreach(Collider2D enemy in collider)
         {
             if(enemy.gameObject.CompareTag("Mimico"))
@@ -128,6 +132,10 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+
+         yield return new WaitForSeconds(0.3f); 
+        
+        isAttacking = false;
     }
 
 
