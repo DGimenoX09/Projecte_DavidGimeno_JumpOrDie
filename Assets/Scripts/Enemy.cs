@@ -6,12 +6,21 @@ public class Enemy : MonoBehaviour
 {
     public int vidasPoints = 3; 
     public int currentvidas; 
+
+    private AudioSource _audioSource;
     // Start is called before the first frame update
     // int == igual a numero entero 
     // float == igual a numnero con decimales 
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>(); 
+    }
+
     void Start()
     {
         currentvidas = vidasPoints;
+        SoundManager.instance.PlaySFX(SoundManager.instance.mimikAudio); 
     }
 
     // Update is called once per frame

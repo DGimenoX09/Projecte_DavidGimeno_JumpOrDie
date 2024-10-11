@@ -6,10 +6,15 @@ public class SoundManager : MonoBehaviour
 {
     
     public static SoundManager instance; 
-    private AudioSource _audioSource; 
+    public AudioSource _audioSource; 
 
     public AudioClip coinAudio; 
     public AudioClip hurtAudio; 
+    public AudioClip mimikAudio; 
+    public AudioClip attackAudio; 
+    
+
+    //public AudioClip[] audios; 
 
 
     void Awake()
@@ -24,6 +29,11 @@ public class SoundManager : MonoBehaviour
         }
 
         _audioSource = GetComponent<AudioSource>(); 
+    }
+
+    public void PlaySFX(AudioSource source, AudioClip clip, float volume)
+    {
+        source.PlayOneShot(clip, volume); 
     }
 
     /*public void CoinSFX()

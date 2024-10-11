@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public static Animator characterAnimator; 
     private float horizontalInput; 
     private bool jumpInput; 
-    private bool isAttacking; 
+    private bool isAttacking;
+    public AudioSource audioSource; 
     [SerializeField]private float characterSpeed = 4.5f; 
     [SerializeField]private float jumpForce = 5f; 
 
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     {
         characterRigidbody = GetComponent<Rigidbody2D>(); 
         characterAnimator = GetComponent<Animator>(); 
+        audioSource = GetComponent<AudioSource>(); 
+
     }
 
     // Start is called before the first frame update
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine("AttackAnimation");
         characterAnimator.SetTrigger("Attack"); 
+        SoundManager.instance.PlaySFX(audioSource, SoundManager.instance.attackAudio, 1); 
 
     }
 
