@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentvidas = vidasPoints;
-        SoundManager.instance.PlaySFX(SoundManager.instance.mimikAudio); 
+        //SoundManager.instance.PlaySFX(SoundManager.instance.mimikAudio); 
     }
 
     // Update is called once per frame

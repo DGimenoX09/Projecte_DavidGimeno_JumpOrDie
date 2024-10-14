@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FondoMovimiento : MonoBehaviour
 {
-  [SerializeField] private Vector2 velocidadMovimiento; 
+  /*[SerializeField] private Vector2 velocidadMovimiento; 
 
   private Vector2 offset; 
   private Material material; 
@@ -21,5 +21,5 @@ public class FondoMovimiento : MonoBehaviour
   {
     offset = (jugadorRB.velocity.x * 0.1f) * velocidadMovimiento * Time.deltaTime; 
     material.mainTextureOffset += offset; 
-  }
+  }*/
 }
