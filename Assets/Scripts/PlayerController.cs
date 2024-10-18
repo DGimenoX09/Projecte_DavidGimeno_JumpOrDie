@@ -10,10 +10,13 @@ public class PlayerController : MonoBehaviour
     private bool jumpInput; 
     private bool isAttacking;
     public AudioSource audioSource; 
+    
     [SerializeField]private float characterSpeed = 4.5f; 
     [SerializeField]private float jumpForce = 5f; 
 
-    [SerializeField] private int healthPoints = 5; 
+    [SerializeField] private int maxHealth = 5; 
+    [SerializeField] private int _currentHealth; 
+
 
     [SerializeField] private Transform attackHitBox; 
     [SerializeField] private float attackRadius = 1; 
@@ -33,6 +36,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //characterRigidbody.AddForce(Vector2.up * jumpForce); 
+        _currentHealth = maxHealth; 
+
+        GameManager.instance.SetHeatlhBar(maxHealth);
     }
 
     // Dos == es para comparar si es igual 
@@ -177,11 +183,13 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void TakeDamage()
+    void TakeDamage(int damage)
     {
-        healthPoints--; 
+        _currentHealth -= damage; 
+        
+        GameManager.instance.UpdateHealtBar(_currentHealth); 
        
-        if(healthPoints <= 0) 
+        if(_currentHealth <= 0) 
         {
             Die(); 
         }
@@ -203,7 +211,7 @@ public class PlayerController : MonoBehaviour
         {
             //characterAnimator.SetTrigger("IsHurt");
             //Destroy(gameObject, 0.45f); 
-            TakeDamage(); 
+            TakeDamage(1); 
         }
     }
 
@@ -212,4 +220,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red; 
         Gizmos.DrawWireSphere(attackHitBox.position,attackRadius); 
     }
+
 }

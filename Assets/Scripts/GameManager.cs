@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _cointext; 
     private bool isPaused; 
     [SerializeField] GameObject _pauseCanvas; 
+    [SerializeField] private Slider _healthBar; 
     private Animator _pausePanelAnimator;  
     private bool pauseAnimator; 
 
@@ -30,15 +32,15 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        if(!isPaused && !pauseAnimation) 
+        if(!isPaused && !pauseAnimator) 
         {
             Time.timeScale = 0;
             isPaused = true;  
             _pauseCanvas.SetActive(true);
         }
-        else if(isPaused && !pauseAnimation) 
+        else if(isPaused && !pauseAnimator) 
         {
-          pauseAnimation = true; 
+          pauseAnimator = true; 
 
           StartCoroutine(ClosePauseAnimation()); 
         }
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         _pauseCanvas.SetActive(false); 
 
-        pauseAnimation = false; 
+        pauseAnimator = false; 
     }
 
 
@@ -63,5 +65,21 @@ public class GameManager : MonoBehaviour
         coins++; 
         _cointext.text = coins.ToString(); 
     } 
+
+    public void SetHeatlhBar(int maxHealth)
+    {
+        _healthBar.maxValue = maxHealth;
+        _healthBar.value = maxHealth; 
+    }
+
+    public void UpdateHealtBar(int health)
+    {
+        _healthBar.value = health; 
+    }
+
+    public void SceneLoader(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName); 
+    }
     
 }
