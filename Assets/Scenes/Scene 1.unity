@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 714286020}
   - component: {fileID: 714286024}
   - component: {fileID: 714286025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mimik1
   m_TagString: Mimico
   m_Icon: {fileID: 0}
@@ -1172,7 +1172,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.002943039, y: -0.07357502}
+  m_Offset: {x: 0.002943039, y: -0.2392397}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1183,7 +1183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8410778, y: 0.6056385}
+  m_Size: {x: 0.8410778, y: 0.037065506}
   m_EdgeRadius: 0
 --- !u!212 &714286022
 SpriteRenderer:
@@ -11794,10 +11794,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1491526968}
   - component: {fileID: 1491526967}
-  - component: {fileID: 1491526970}
-  - component: {fileID: 1491526969}
   - component: {fileID: 1491526971}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11871,32 +11869,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1491526969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491526965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6c2e1546e80f4ab258ee8cfe3071b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
---- !u!114 &1491526970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491526965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415a75405e249524c86ce3a6762b9e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 5
 --- !u!61 &1491526971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13319,8 +13291,6 @@ GameObject:
   - component: {fileID: 2005106718}
   - component: {fileID: 2005106721}
   - component: {fileID: 2005106722}
-  - component: {fileID: 2005106724}
-  - component: {fileID: 2005106723}
   m_Layer: 0
   m_Name: rogue
   m_TagString: Player
@@ -13595,32 +13565,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2005106723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005106715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc6c2e1546e80f4ab258ee8cfe3071b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
---- !u!114 &2005106724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005106715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 415a75405e249524c86ce3a6762b9e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 5
 --- !u!1 &2031449840
 GameObject:
   m_ObjectHideFlags: 0

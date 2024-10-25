@@ -181,6 +181,12 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;  
     }
 
+    void Health (int health)
+    {
+        _currentHealth += health; 
+        
+    }
+
 
 
     void TakeDamage(int damage)
@@ -211,6 +217,20 @@ public class PlayerController : MonoBehaviour
         {
             //characterAnimator.SetTrigger("IsHurt");
             //Destroy(gameObject, 0.45f); 
+            TakeDamage(1); 
+        }
+
+        if(collider.gameObject.layer == 10)
+        {
+            Health(1); 
+            Destroy(collider.gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 9)
+        {
             TakeDamage(1); 
         }
     }
