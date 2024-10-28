@@ -12,6 +12,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip hurtAudio; 
     public AudioClip mimikAudio; 
     public AudioClip attackAudio; 
+    public AudioClip jumpAudio; 
+    public AudioClip DieAudio; 
+    
+
+    
     
 
     //public AudioClip[] audios; 
@@ -40,9 +45,4 @@ public class SoundManager : MonoBehaviour
     {
         _audioSource.PlayOneShot(_coinAudio); 
     */
-    
-    public void PlaySFX(AudioClip clip)
-    {
-        _audioSource.PlayOneShot(clip); 
-    }
 }

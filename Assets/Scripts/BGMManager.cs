@@ -24,7 +24,7 @@ public class BGMManager : MonoBehaviour
 
         _audioSource.loop = true; 
         _audioSource.mute = false;
-        _audioSource.volume = 0.1f; 
+        _audioSource.volume = 0.5f; 
 
     } 
 

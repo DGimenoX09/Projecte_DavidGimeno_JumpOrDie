@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         characterRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
         characterAnimator.SetBool("IsJumping",true);
+        SoundManager.instance.PlaySFX(SoundManager.instance._audioSource, SoundManager.instance.jumpAudio, 0.7f);
     }
 
 
@@ -154,6 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true; 
         characterAnimator.SetTrigger("Attack"); 
+        SoundManager.instance.PlaySFX(SoundManager.instance._audioSource, SoundManager.instance.attackAudio, 0.5f); 
     }
 
 
@@ -217,6 +219,7 @@ public class PlayerController : MonoBehaviour
     {
         characterAnimator.SetTrigger("IsDead");
         Destroy(gameObject, 0.45f); 
+        SoundManager.instance.PlaySFX(SoundManager.instance._audioSource, SoundManager.instance.DieAudio, 0.8f); 
     }
 
     void OnTriggerEnter2D(Collider2D collider)
