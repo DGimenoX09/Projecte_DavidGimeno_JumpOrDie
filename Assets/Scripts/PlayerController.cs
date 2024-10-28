@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PlayerController : MonoBehaviour
 {
@@ -184,6 +185,11 @@ public class PlayerController : MonoBehaviour
     void Health (int health)
     {
         _currentHealth += health; 
+        if(_currentHealth>maxHealth)
+        {
+            _currentHealth = maxHealth; 
+        }
+        GameManager.instance.UpdateHealtBar(_currentHealth); 
         
     }
 
@@ -198,6 +204,8 @@ public class PlayerController : MonoBehaviour
         if(_currentHealth <= 0) 
         {
             Die(); 
+
+            SceneLoader("Game Over");
         }
         else
         {
@@ -213,6 +221,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        if(collider.gameObject.layer == 11)
+        {
+            SceneLoader("Game Over"); 
+        }
         if(collider.gameObject.layer == 8)
         {
             //characterAnimator.SetTrigger("IsHurt");
@@ -239,6 +251,11 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red; 
         Gizmos.DrawWireSphere(attackHitBox.position,attackRadius); 
+    }
+
+    public void SceneLoader(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName); 
     }
 
 }

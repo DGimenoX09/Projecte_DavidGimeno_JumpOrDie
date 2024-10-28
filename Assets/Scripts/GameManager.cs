@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; 
 
     private int coins = 0;
+    private int star = 0; 
     [SerializeField] Text _cointext; 
+    [SerializeField] Text _startext; 
+
     private bool isPaused; 
     [SerializeField] GameObject _pauseCanvas; 
     [SerializeField] private Slider _healthBar; 
@@ -64,7 +67,18 @@ public class GameManager : MonoBehaviour
     {
         coins++; 
         _cointext.text = coins.ToString(); 
+        if (coins == 5)
+        {
+            SceneLoader("Victory"); 
+        }
     } 
+
+    public void AddStar()
+    {
+        star++; 
+        _startext.text = star.ToString(); 
+    }
+
 
     public void SetHeatlhBar(int maxHealth)
     {
